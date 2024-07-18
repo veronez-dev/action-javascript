@@ -31104,10 +31104,23 @@ async function run() {
     });
     
     console.log('Comentário adicionado com sucesso!');
-  } catch (error) {
-    core.setFailed(`Erro ao adicionar comentário: ${error.message}`);
+
+    // Obtenha todos os comentários da issue ou pull request
+    const { data: comments } = await octokit.rest.issues.listComments({
+        issue_number: issueId,
+      });
+  
+      // Concatena todos os comentários em uma única string
+      const allComments = comments.map(c => c.body).join('\n---\n');
+  
+      // Define o output da action
+      core.setOutput('all-comments', allComments);
+      
+      console.log('Todos os comentários foram obtidos com sucesso!');
+    } catch (error) {
+      core.setFailed(`Erro ao adicionar comentário ou obter comentários: ${error.message}`);
+    }
   }
-}
 
 run();
 
