@@ -1,0 +1,24 @@
+name: 'Add issue comment (js)'
+description: 'Adiciona comentário em uma issue'
+author: 'Fabricio Veronez'
+inputs:
+  issue-id:
+    description: 'ID da issue que deve ser comentada'
+    required: true
+  comment:
+    description: 'Comentário que deve ser adicionando na issue'
+    required: true
+outputs:
+  cache-hit:
+    description: 'A boolean value to indicate an exact match was found for the primary key'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+#
+#  Mais informações de cores e icones:
+#  https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
+#
+branding:
+  icon: 'archive'
+  color: 'gray-dark'
