@@ -2,6 +2,9 @@ name: 'Add issue comment (js)'
 description: 'Adiciona comentário em uma issue'
 author: 'Fabricio Veronez'
 inputs:
+  GITHUB_TOKEN:
+    description: 'Token do GitHub'
+    required: true
   issue-id:
     description: 'ID da issue que deve ser comentada'
     required: true

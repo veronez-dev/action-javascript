@@ -17,6 +17,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: hello
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           issue-id: ${{ github.event.issue.number }}
           comment: 'Teste de comentário'
       # Use the output from the `hello` step
