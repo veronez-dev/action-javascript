@@ -12,8 +12,8 @@ inputs:
     description: 'Comentário que deve ser adicionando na issue'
     required: true
 outputs:
-  cache-hit:
-    description: 'A boolean value to indicate an exact match was found for the primary key'
+  comment-id:
+    description: 'ID do comentário criado'
 runs:
   using: 'node20'
   main: 'dist/index.js'
