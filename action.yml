@@ -17,11 +17,3 @@ outputs:
 runs:
   using: 'node20'
   main: 'dist/index.js'
-
-#
-#  Mais informações de cores e icones:
-#  https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
-#
-branding:
-  icon: 'archive'
-  color: 'gray-dark'
