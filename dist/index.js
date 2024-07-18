@@ -31095,34 +31095,27 @@ async function run() {
     const context = github.context;
     const { owner, repo } = context.repo;
     
-    // Adiciona o comentário ao issue ou pull request
-    await octokit.rest.issues.createComment({
-      owner: owner,
-      repo: repo,
-      issue_number: issueId,
-      body: comment,
-    });
-    
-    console.log('Comentário adicionado com sucesso!');
-
-    // Obtenha todos os comentários da issue ou pull request
-    const { data: comments } = await octokit.rest.issues.listComments({
+    // Adiciona um comentário ao issue ou pull request
+    const response = await octokit.rest.issues.createComment({
+        owner: owner,
+        repo: repo,
         issue_number: issueId,
+        body: comment,
       });
-  
-      // Concatena todos os comentários em uma única string
-      const allComments = comments.map(c => c.body).join('\n---\n');
-  
-      // Define o output da action
-      core.setOutput('all-comments', allComments);
       
-      console.log('Todos os comentários foram obtidos com sucesso!');
+      // Obtenha o ID do comentário criado
+      const commentId = response.data.id;
+      
+      // Define o output com o ID do comentário
+      core.setOutput('comment-id', commentId);
+      
+      console.log('Comentário adicionado com sucesso! ID do comentário:', commentId);
     } catch (error) {
-      core.setFailed(`Erro ao adicionar comentário ou obter comentários: ${error.message}`);
+      core.setFailed(`Erro ao adicionar comentário: ${error.message}`);
     }
   }
-
-run();
+  
+  run();
 
 })();
 
